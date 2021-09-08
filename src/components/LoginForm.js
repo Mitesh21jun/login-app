@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link,Router } from "react-router-dom";
+import { Link, Router } from "react-router-dom";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -21,7 +21,7 @@ const LoginForm = () => {
         if (!user) {
           submitForm(e)
         }
-        if (password == user.password) {
+        if (password === user.password) {
           console.log("success")
         }
         return (<Link to={"/user-welcome"} username={username} />)
