@@ -18,9 +18,9 @@ const SignupForm = () => {
       admin: admin,
     });
 
-    if (!newUser) {
-      submitSignUp(e);
-    }
+    // if (newUser) {
+    //   submitSignUp(e);
+    // }
 
     const json = JSON.stringify(newUser);
     localStorage.setItem(username, json);
