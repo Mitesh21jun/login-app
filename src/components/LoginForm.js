@@ -7,36 +7,38 @@ const LoginForm = () => {
   const [user, setUser] = useState([]);
 
   // useEffect((e) => {
-  
+
   // }, []);
 
   const submitForm = (e) => {
     e.preventDefault();
-    
+
     if (username && password) {
       const getUsers = localStorage.getItem(username);
       const users = JSON.parse(getUsers);
       if (users) {
         setUser(users);
         if (!user) {
-          submitForm(e)
+          submitForm(e);
         }
         if (password === user.password) {
-          console.log("success")
+          if (user.admin === true) {
+            alert("Welcome Admin");
+          } else {
+            alert("Welcome User");
+          }
+          return <Link to={"/user-welcome"} username={username} />;
         }
-        return (<Link to={"/user-welcome"} username={username} />)
       } else {
-        alert('Invalid Username')
+        alert("Invalid Username");
       }
-
-  
     } else {
       alert("Username and Password field can not be blank");
     }
   };
 
   return (
-    <form  className="col-5 mt-5">
+    <form className="col-5 mt-5">
       <h3>Login</h3>
 
       <div className="form-group">
@@ -47,7 +49,8 @@ const LoginForm = () => {
           placeholder="Enter Username"
           name="username"
           id="username"
-          value={username}
+          // value={username}
+
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
@@ -69,10 +72,10 @@ const LoginForm = () => {
 
       <button
         // to={'/user-welcome'} username={username}
-          className="btn btn-primary btn-block"
+        className="btn btn-primary btn-block"
         onClick={submitForm}
       >
-          Submit      
+        Submit
       </button>
     </form>
   );

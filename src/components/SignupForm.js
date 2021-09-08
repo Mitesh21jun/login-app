@@ -17,19 +17,18 @@ const SignupForm = () => {
       password: password,
       admin: admin,
     });
-      
-      if (!newUser) {
-          submitSignUp(e);
-         }
-     
+
+    if (!newUser) {
+      submitSignUp(e);
+    }
 
     const json = JSON.stringify(newUser);
-      localStorage.setItem(username, json);
-      
+    localStorage.setItem(username, json);
+
     // localStorage.setItem(newUser, 'user');
   };
   return (
-    <form onSubmit={submitSignUp} className='col-5 mt-5'>
+    <form onSubmit={submitSignUp} className="col-5 mt-5">
       <h3>Sign Up</h3>
 
       <div className="form-group">
@@ -95,8 +94,10 @@ const SignupForm = () => {
           className="checkbox"
           name="admin"
           id="admin"
-          value={admin}
-          onChange={(e) => setAdmin(e.target.value)}
+                  onChangeCapture={(e) => setAdmin(e.target.value)}
+                checked={admin}  
+        //   value={admin}
+          onChange={(e) => setAdmin(e.target.checked)}
         />
       </div>
       <br />
